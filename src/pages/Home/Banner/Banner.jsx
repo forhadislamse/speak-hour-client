@@ -28,23 +28,23 @@ const Banner = () => {
                 autoplay={true}
 
                 modules={[Pagination, Navigation, Autoplay]}
-                className="mySwiper relative h-[700px] "
+                className="mySwiper relative lg:h-[700px] "
             >
                 <SwiperSlide>
                     <img src={slider1} alt="slider1" />
-                    <img className="absolute w-48 h-48 top-0 right-0" src={img1} alt="slider1" />
+                    <img className="absolute w-24 h-24 md:w-48 md:h-48 top-0 right-0" src={img1} alt="slider1" />
                 </SwiperSlide>
                 <SwiperSlide>
                     <img src={slider2} alt="slider2" />
-                    <img className="absolute w-48 h-48 top-0 right-0" src={img2} alt="slider1" />
+                    <img className="absolute w-24 h-24 md:w-48 md:h-48 top-0 right-0" src={img2} alt="slider1" />
                 </SwiperSlide>
                 <SwiperSlide>
                     <img src={slider3} alt="slider3" />
-                    <img className="absolute w-48 h-48 top-0 right-0" src={img1} alt="slider1" />
+                    <img className="absolute w-24 h-24 md:w-48 md:h-48 top-0 right-0" src={img1} alt="slider1" />
                 </SwiperSlide>
                 <SwiperSlide>
                     <img src={slider4} alt="slider4" />
-                    <img className="absolute w-48 h-48 top-0 right-0" src={img2} alt="slider1" />
+                    <img className="absolute w-24 h-24 md:w-48 md:h-48 top-0 right-0" src={img2} alt="slider1" />
                 </SwiperSlide>
             </Swiper>
         </div>
