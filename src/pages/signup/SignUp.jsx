@@ -25,7 +25,7 @@ const SignUp = () => {
                     <div className="text-center lg:text-left w-full md:w-1/2">
                         <h1 className="text-5xl font-bold">Register Now!</h1>
                     </div>
-                    <div className="card w-full md:w-3/4  shadow-2xl bg-base-100">
+                    <div className="card w-full md:w-3/4 bg-base-100">
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                             <div className="form-control">
                                 <label className="label">
@@ -65,13 +65,19 @@ const SignUp = () => {
                                 <div className='flex items-center'>
                                     <input name="password" placeholder="password" className="input input-bordered w-full"
                                         type={showPassword ? 'text' : 'password'}
-                                        {...register('password', { required: 'Password is required' })}
+                                        {...register('password', {
+                                            required: 'Password is required',
+                                            minLength: 6,
+                                            pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/
+                                        })}
                                     />
                                     <span className='-ms-8 text-2xl ' onClick={togglePasswordVisibility}>
                                         {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
                                     </span>
                                 </div>
                                 {errors.password && <p className="text-red-600">{errors.password.message}</p>}
+                                {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
+                                {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one Uppercase  and one special character.</p>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -91,13 +97,32 @@ const SignUp = () => {
                                 </div>
                                 {errors.confirmPassword && <p className="text-red-600">{errors.confirmPassword.message}</p>}
                             </div>
+                            <div className='flex gap-2'>
+                                <div className="form-control">
+                                    <label className="label"><span className="label-text">Gender</span></label>
+                                    <select name="gender" placeholder="gender" className="input input-bordered" {...register('gender')}>
+                                        <option value="">Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div className="form-control">
+                                    <label className="label"><span className="label-text">Phone Number</span></label>
+                                    <input type="tel" name="phone" className="input input-bordered" placeholder="phone number" {...register('phoneNumber')} />
+                                </div>
 
+                            </div>
+                            <div className="form-control">
+                                <label className="label"><span className="label-text">Address</span></label>
+                                <textarea type="tel" name="address" className="input input-bordered" placeholder="address"  {...register('address')} />
+                            </div>
 
                             <div className="form-control mt-6">
-                                <input className="btn btn-primary" type="submit" value="Login" />
+                                <input className="btn btn-error" type="submit" value="Sign Up" />
                             </div>
                         </form>
-                        <p className="text-center py-4 "><small>Don't have an account <Link to="/signup" className="text-red-500 font-semibold">Register Now</Link></small></p>
+                        <p className="text-center py-4 "><small>Already have an account <Link to="/login" className="text-red-500 font-semibold">Login Now</Link></small></p>
                         <div className='text-center'>
                             <p className="divider">OR</p>
                             <button className=" btn mb-8"><span className='text-xl text-red-400'><AiFillGoogleCircle></AiFillGoogleCircle></span> Login with Google</button>

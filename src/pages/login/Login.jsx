@@ -54,7 +54,7 @@ const Login = () => {
                                 {errors.password && <p className="text-red-600">{errors.password.message}</p>}
                             </div>
                             <div className="form-control mt-6">
-                                <input className="btn btn-primary" type="submit" value="Login" />
+                                <input className="btn btn-error" type="submit" value="Login" />
                             </div>
                         </form>
                         <p className="text-center py-4 "><small>Don't have an account <Link to="/signup" className="text-red-500 font-semibold">Register Now</Link></small></p>
