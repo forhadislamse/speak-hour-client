@@ -6,6 +6,8 @@ import Home from "../pages/Home/Home/Home";
 import Instructors from "../pages/Instructors/Instructors";
 import Classes from "../pages/Classes/Classes";
 import ErrorPage from "../pages/Shared/ErrorPage/ErrorPage";
+import Login from "../pages/login/Login";
+import SignUp from "../pages/signup/SignUp";
 
 
 
@@ -28,6 +30,14 @@ export const router = createBrowserRouter([
                 path: 'classes',
                 element: <Classes></Classes>
             },
+            {
+                path: 'login',
+                element: <Login></Login>
+            },
+            {
+                path: 'signup',
+                element: <SignUp></SignUp>
+            }
         ]
     },
 ]);
