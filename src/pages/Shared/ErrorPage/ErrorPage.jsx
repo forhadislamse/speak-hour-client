@@ -1,6 +1,7 @@
 import { FaHome } from "react-icons/fa";
 import { Link, useRouteError, } from 'react-router-dom'
 import errorImg from '../../../assets/404.jpg'
+import { Helmet } from "react-helmet-async";
 
 
 const ErrorPage = () => {
@@ -9,6 +10,11 @@ const ErrorPage = () => {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 w-full h-[700px]">
+            <Helmet>
+                <title>
+                    SpeakHour | Not Found
+                </title>
+            </Helmet>
             <div>
                 <img src={errorImg} alt="" />
             </div>
