@@ -1,12 +1,14 @@
 
 const ClassItem = ({ item }) => {
     // console.log(item);
-    const { course_name, image } = item;
+    const { course_name, image, available_seats, enrolled_student } = item;
     return (
-        <div className="card card-compact w-96 bg-base-100 shadow-xl">
-            <figure><img src={image} alt="Shoes" /></figure>
+        <div className="card lg:card-side bg-red-100">
+            <figure className="w-full"><img src={image} alt="image" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{course_name}</h2>
+                <p>Available seats:{available_seats}</p>
+                <p>Enrolled student:{enrolled_student}</p>
             </div>
         </div>
     );
