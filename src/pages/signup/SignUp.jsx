@@ -1,9 +1,112 @@
+import React from 'react';
+import { AiFillEye, AiFillEyeInvisible, AiFillGoogleCircle } from "react-icons/ai";
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import { useState } from "react";
 
 const SignUp = () => {
-    return (
-        <div>
+    const { register, handleSubmit, formState: { errors }, watch } = useForm();
+    const [showPassword, setShowPassword] = useState(false);
 
-        </div>
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const password = React.useRef({});
+    password.current = watch('password', '');
+
+    const onSubmit = (data) => {
+        console.log(data);
+    };
+    return (
+        <>
+            <div className="hero min-h-screen bg-base-200">
+                <div className="hero-content flex flex-col md:flex-row">
+                    <div className="text-center lg:text-left w-full md:w-1/2">
+                        <h1 className="text-5xl font-bold">Register Now!</h1>
+                    </div>
+                    <div className="card w-full md:w-3/4  shadow-2xl bg-base-100">
+                        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Name</span>
+                                </label>
+                                <input
+                                    type="text" name="name" placeholder="name" className="input input-bordered"
+                                    {...register('name', { required: 'name is required' })}
+                                />
+                                {errors.name && <p className="text-red-600">{errors.name.message}</p>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">PhotoURL</span>
+                                </label>
+                                <input
+                                    type="text" name="photoURL" placeholder="photoURL" className="input input-bordered"
+                                    {...register('photoUrl', { required: 'photoUrl is required' })}
+                                />
+                                {errors.photoUrl && <p className="text-red-600">{errors.photoUrl.message}</p>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input
+                                    type="email" name="email" placeholder="email" className="input input-bordered"
+                                    {...register('email', { required: 'Email is required' })}
+                                />
+                                {errors.email && <p className="text-red-600">{errors.email.message}</p>}
+                            </div>
+
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Password</span>
+                                </label>
+                                <div className='flex items-center'>
+                                    <input name="password" placeholder="password" className="input input-bordered w-full"
+                                        type={showPassword ? 'text' : 'password'}
+                                        {...register('password', { required: 'Password is required' })}
+                                    />
+                                    <span className='-ms-8 text-2xl ' onClick={togglePasswordVisibility}>
+                                        {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+                                    </span>
+                                </div>
+                                {errors.password && <p className="text-red-600">{errors.password.message}</p>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Confirm Password</span>
+                                </label>
+                                <div className='flex items-center'>
+                                    <input name="password" placeholder="re-type password" className="input input-bordered w-full"
+                                        type={showPassword ? 'text' : 'password'}
+                                        {...register('confirmPassword', {
+                                            required: 'confirm Password is required',
+                                            validate: value => value === password.current || 'Password do not match'
+                                        })}
+                                    />
+                                    <span className='-ms-8 text-2xl ' onClick={togglePasswordVisibility}>
+                                        {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+                                    </span>
+                                </div>
+                                {errors.confirmPassword && <p className="text-red-600">{errors.confirmPassword.message}</p>}
+                            </div>
+
+
+                            <div className="form-control mt-6">
+                                <input className="btn btn-primary" type="submit" value="Login" />
+                            </div>
+                        </form>
+                        <p className="text-center py-4 "><small>Don't have an account <Link to="/signup" className="text-red-500 font-semibold">Register Now</Link></small></p>
+                        <div className='text-center'>
+                            <p className="divider">OR</p>
+                            <button className=" btn mb-8"><span className='text-xl text-red-400'><AiFillGoogleCircle></AiFillGoogleCircle></span> Login with Google</button>
+                        </div>
+                    </div>
+                </div >
+
+            </div >
+        </>
     );
 };
 

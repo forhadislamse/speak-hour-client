@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { AiFillEye, AiFillEyeInvisible, AiFillGoogleCircle } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
@@ -11,56 +12,62 @@ const Login = () => {
     };
 
     const onSubmit = (data) => {
-        console.log(data); // You can perform login logic here
+        console.log(data);
     };
 
     return (
-        <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex flex-col md:flex-row">
-                <div className="text-center lg:text-left w-full md:w-1/4">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
-                </div>
-                <div className="card w-full md:w-3/4  shadow-2xl bg-base-100">
-                    <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
-                            <input
-                                type="email" name="email" placeholder="email" className="input input-bordered"
-                                {...register('email', { required: 'Email is required' })}
-                            />
-                            {errors.email && <p className="text-red-600">{errors.email.message}</p>}
-                        </div>
-
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Password</span>
-                            </label>
-                            <div className='flex items-center'>
-                                <input name="password" placeholder="password" className="input input-bordered w-full"
-                                    type={showPassword ? 'text' : 'password'}
-                                    {...register('password', { required: 'Password is required' })}
-                                />
-                                <span className='-ms-8 text-2xl ' onClick={togglePasswordVisibility}>
-                                    {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
-                                </span>
-                            </div>
-                            {errors.password && <p className="text-red-600">{errors.password.message}</p>}
-                        </div>
-                        <div className="form-control mt-6">
-                            <input className="btn btn-primary" type="submit" value="Login" />
-                        </div>
-                    </form>
-                    <p className="text-center py-4 "><small>Don't have an account <Link to="/signup" className="text-red-500 font-semibold">Register Now</Link></small></p>
-                    <div className='text-center'>
-                        <p className="divider">OR</p>
-                        <button className=" btn mb-8"><span className='text-xl text-red-400'><AiFillGoogleCircle></AiFillGoogleCircle></span> Login with Google</button>
+        <>
+            <Helmet>
+                <title>Bistro Boss | Login</title>
+            </Helmet>
+            <div className="hero min-h-screen bg-base-200">
+                <div className="hero-content flex flex-col md:flex-row">
+                    <div className="text-center lg:text-left w-full md:w-1/4">
+                        <h1 className="text-5xl font-bold">Login now!</h1>
                     </div>
-                </div>
-            </div >
+                    <div className="card w-full md:w-3/4  shadow-2xl bg-base-100">
+                        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input
+                                    type="email" name="email" placeholder="email" className="input input-bordered"
+                                    {...register('email', { required: 'Email is required' })}
+                                />
+                                {errors.email && <p className="text-red-600">{errors.email.message}</p>}
+                            </div>
 
-        </div >
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Password</span>
+                                </label>
+                                <div className='flex items-center'>
+                                    <input name="password" placeholder="password" className="input input-bordered w-full"
+                                        type={showPassword ? 'text' : 'password'}
+                                        {...register('password', { required: 'Password is required' })}
+                                    />
+                                    <span className='-ms-8 text-2xl ' onClick={togglePasswordVisibility}>
+                                        {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+                                    </span>
+                                </div>
+                                {errors.password && <p className="text-red-600">{errors.password.message}</p>}
+                            </div>
+                            <div className="form-control mt-6">
+                                <input className="btn btn-primary" type="submit" value="Login" />
+                            </div>
+                        </form>
+                        <p className="text-center py-4 "><small>Don't have an account <Link to="/signup" className="text-red-500 font-semibold">Register Now</Link></small></p>
+                        <div className='text-center'>
+                            <p className="divider">OR</p>
+                            <button className=" btn mb-8"><span className='text-xl text-red-400'><AiFillGoogleCircle></AiFillGoogleCircle></span> Login with Google</button>
+                        </div>
+                    </div>
+                </div >
+
+            </div >
+        </>
+
     );
 };
 
