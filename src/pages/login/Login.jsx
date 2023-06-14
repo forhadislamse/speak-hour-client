@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { AiFillEye, AiFillEyeInvisible, AiFillGoogleCircle } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 const Login = () => {
@@ -10,7 +10,10 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     const { signIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
 
+    const from = location.state?.from?.pathname || "/";
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
@@ -27,7 +30,7 @@ const Login = () => {
                     'user login successfully!',
                     'success'
                 )
-                // navigate(from, { replace: true });
+                navigate(from, { replace: true });
             })
     };
 

@@ -23,12 +23,12 @@ const SignUp = () => {
     password.current = watch('password', '');
 
     const onSubmit = (data) => {
-        // console.log(data);
+        console.log(data);
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                updateUserProfile(data.name, data.photoURL)
+                updateUserProfile(data.name, data.photoUrl)
                     .then(() => {
                         console.log('user profile info updated')
                         reset();
@@ -74,7 +74,7 @@ const SignUp = () => {
                                     <span className="label-text">PhotoURL</span>
                                 </label>
                                 <input
-                                    type="text" name="photoURL" placeholder="photoURL" className="input input-bordered"
+                                    type="text" name="photoUrl" placeholder="photoUrl" className="input input-bordered"
                                     {...register('photoUrl', { required: 'photoUrl is required' })}
                                 />
                                 {errors.photoUrl && <p className="text-red-600">{errors.photoUrl.message}</p>}
