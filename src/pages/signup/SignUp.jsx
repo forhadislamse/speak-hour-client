@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AiFillEye, AiFillEyeInvisible, AiFillGoogleCircle } from "react-icons/ai";
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from "react";
+import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
-    const { register, handleSubmit, formState: { errors }, watch } = useForm();
+    const { register, handleSubmit, reset, formState: { errors }, watch } = useForm();
+
+    const { createUser, updateUserProfile, logOut } = useContext(AuthContext);
+
     const [showPassword, setShowPassword] = useState(false);
+
+    const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -16,7 +23,32 @@ const SignUp = () => {
     password.current = watch('password', '');
 
     const onSubmit = (data) => {
-        console.log(data);
+        // console.log(data);
+        createUser(data.email, data.password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        console.log('user profile info updated')
+                        reset();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'user created successfully.',
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        logOut()
+                            .then(() => {
+                                navigate('/login');
+                            })
+                            .catch(error => console.log(error));
+
+                    })
+                    .catch(error => console.log(error))
+            })
+
     };
     return (
         <>
