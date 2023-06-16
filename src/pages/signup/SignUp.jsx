@@ -5,11 +5,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const SignUp = () => {
     const { register, handleSubmit, reset, formState: { errors }, watch } = useForm();
 
-    const { createUser, updateUserProfile, logOut } = useContext(AuthContext);
+    const { createUser, updateUserProfile, logOut, signInWithGoogle } = useContext(AuthContext);
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -50,9 +51,23 @@ const SignUp = () => {
             })
 
     };
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
     return (
         <>
             <div className="hero min-h-screen bg-base-200">
+                <Helmet>
+                    <title>SpeakHour | Sign Up</title>
+                </Helmet>
                 <div className="hero-content flex flex-col md:flex-row">
                     <div className="text-center lg:text-left w-full md:w-1/2">
                         <h1 className="text-5xl font-bold">Register Now!</h1>
@@ -157,7 +172,7 @@ const SignUp = () => {
                         <p className="text-center py-4 "><small>Already have an account <Link to="/login" className="text-red-500 font-semibold">Login Now</Link></small></p>
                         <div className='text-center'>
                             <p className="divider">OR</p>
-                            <button className=" btn mb-8"><span className='text-xl text-red-400'><AiFillGoogleCircle></AiFillGoogleCircle></span> Login with Google</button>
+                            <button onClick={handleGoogleSignIn} className=" btn mb-8"><span className='text-xl text-red-400'><AiFillGoogleCircle></AiFillGoogleCircle></span> Login with Google</button>
                         </div>
                     </div>
                 </div >
