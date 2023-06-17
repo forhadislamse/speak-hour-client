@@ -28,11 +28,11 @@ const Footer = () => {
                     <span className="text-xl">Contact Info</span>
                     <div className="form-control w-80">
                         <label className="label">
-                            <span className="label-text">Enter your email address</span>
+                            <span className="label-text text-white">Enter your email address</span>
                         </label>
                         <div className="relative">
                             <input type="text" placeholder="username@gmail.com" className="input input-bordered w-full pr-16" />
-                            <button className="btn btn-secondary absolute top-0 right-0 rounded-l-none">Subscribe</button>
+                            <button className="btn btn-accent absolute top-0 right-0 rounded-l-none">Subscribe</button>
                         </div>
                     </div>
                 </div>

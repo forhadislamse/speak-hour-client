@@ -64,7 +64,7 @@ const SignUp = () => {
     }
     return (
         <>
-            <div className="hero min-h-screen bg-base-200">
+            <div className="hero min-h-screen bg-red-200">
                 <Helmet>
                     <title>SpeakHour | Sign Up</title>
                 </Helmet>
@@ -72,7 +72,7 @@ const SignUp = () => {
                     <div className="text-center lg:text-left w-full md:w-1/2">
                         <h1 className="text-5xl font-bold">Register Now!</h1>
                     </div>
-                    <div className="card w-full md:w-3/4 bg-base-100">
+                    <div className="card w-full md:w-3/4 bg-red-100">
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                             <div className="form-control">
                                 <label className="label">
@@ -144,7 +144,7 @@ const SignUp = () => {
                                 </div>
                                 {errors.confirmPassword && <p className="text-red-600">{errors.confirmPassword.message}</p>}
                             </div>
-                            <div className='flex gap-2'>
+                            <div className='flex gap-2 xs:w-1/2 lg:w-full'>
                                 <div className="form-control">
                                     <label className="label"><span className="label-text">Gender</span></label>
                                     <select name="gender" placeholder="gender" className="input input-bordered" {...register('gender')}>

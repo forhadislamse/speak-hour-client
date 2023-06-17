@@ -50,12 +50,12 @@ const Login = () => {
             <Helmet>
                 <title>SpeakHour | Login</title>
             </Helmet>
-            <div className="hero min-h-screen bg-base-200">
+            <div className="hero min-h-screen bg-red-200">
                 <div className="hero-content flex flex-col md:flex-row">
-                    <div className="text-center lg:text-left w-full md:w-1/4">
+                    <div className="text-center">
                         <h1 className="text-5xl font-bold">Login now!</h1>
                     </div>
-                    <div className="card w-full md:w-3/4  shadow-2xl bg-base-100">
+                    <div className="card w-full shadow-2xl bg-red-100">
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                             <div className="form-control">
                                 <label className="label">

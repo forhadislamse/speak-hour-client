@@ -3,7 +3,7 @@ const InstructorCard = ({ item }) => {
     const { instructors, enrolled_student } = item;
     return (
         <div>
-            <div className="card lg:card-side  bg-green-200  md:w-full mx-auto mt-8">
+            <div className="card lg:card-side  bg-red-50  md:w-full mx-auto mt-8">
                 <img className="w-48 h-60 rounded" src={instructors[0].instructor_img} alt="instructor_image" />
                 <div className="card-body">
                     <h2 className="card-title">{instructors[0].instructor_name}</h2>
@@ -11,7 +11,7 @@ const InstructorCard = ({ item }) => {
                     <p >Total Classes: {instructors[0].no_of_classes_by_instructor}</p>
                     <p >Enrolled Student: {enrolled_student}</p>
                     <div className="card-actions justify-end">
-                        <button className="text-white btn btn-error">See Classes</button>
+                        <button className="text-white btn btn-accent">See Classes</button>
                     </div>
                 </div>
             </div>
