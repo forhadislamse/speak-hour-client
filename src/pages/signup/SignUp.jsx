@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AiFillEye, AiFillEyeInvisible, AiFillGoogleCircle } from "react-icons/ai";
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
@@ -15,6 +15,10 @@ const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
+
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -72,11 +76,20 @@ const SignUp = () => {
     const handleGoogleSignIn = () => {
         signInWithGoogle()
             .then(result => {
-                const loggedUser = result.user;
-                console.log(loggedUser);
-            })
-            .catch(error => {
-                console.log(error)
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
+                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                        navigate(from, { replace: true });
+                    })
             })
     }
     return (
