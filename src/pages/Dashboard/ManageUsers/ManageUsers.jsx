@@ -82,7 +82,7 @@ const ManageUsers = () => {
                                 <td>{user.role === 'instructor' ? 'instructor' :
                                     <button onClick={() => handleMakeInstructor(user)} className="btn btn-ghost bg-orange-600  text-white">Make Instructor</button>}</td>
                             </tr>)
-                            // onClick={() => handleDelete(user)}
+
                         }
 
 
