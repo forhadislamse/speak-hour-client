@@ -11,7 +11,7 @@ const useSelects = () => {
 
         enabled: !loading,
         // queryFn: async () => {
-        //     const res = await fetch(`http://localhost:5000/selects?email=${user?.email}`, {
+        //     const res = await fetch(`https://speak-hour-server.vercel.app/selects?email=${user?.email}`, {
         //         headers: {
         //             authorization: `bearer ${token}`
 

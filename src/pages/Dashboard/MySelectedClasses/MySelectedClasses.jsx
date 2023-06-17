@@ -86,7 +86,7 @@ const MySelectedClasses = () => {
                                     {item.available_seats}
                                 </td>
                                 <td>
-                                    {item.instructors[0].instructor_name}
+                                    {item.instructor_name}
                                 </td>
 
                                 <td className="text-end">${item.course_price}</td>

@@ -12,10 +12,10 @@ import Dashboard from "../layout/DashBoard";
 import MySelectedClasses from "../pages/DashBoard/MySelectedClasses/MySelectedClasses";
 import PrivateRoute from "./PrivateRoute";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
-import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
 import AddAClass from "../pages/Dashboard/AddAClass/AddAClass";
 import MyClasses from "../pages/Dashboard/MyClasses/MyClasses";
 import MyEnrolledClasses from "../pages/Dashboard/MyEnrolledClasses/MyEnrolledClasses";
+import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
 
 
 

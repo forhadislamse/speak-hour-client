@@ -19,14 +19,14 @@ const NavBar = () => {
             <li><Link to='/instructors'>Instructors</Link></li>
             <li><Link to='/classes'>CLasses</Link></li>
             {/* <li><Link to="/dashboard">Dashboard</Link></li> */}
-            <li>
-                <Link to="/dashboard">
-                    Dashboard
-                </Link>
-            </li>
+
             {
                 user ? <>
-                    {/* <li><span >{user?.displayName}</span></li> */}
+                    <li>
+                        <Link to="/dashboard">
+                            Dashboard
+                        </Link>
+                    </li>
                     <li><span><img className='rounded-full ' style={{ height: "40px", width: "40px" }} src={user?.photoURL} alt="" /></span></li>
                     <li>
                         <input type="button" onClick={handleLogOut} value="Log Out" />

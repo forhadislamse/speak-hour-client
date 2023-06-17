@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import useSelects from "../../hooks/useSelects";
 
 const ClassCard = ({ item }) => {
-    const { image, course_name, available_seats, instructors, course_price, enrolled_student, _id } = item;
+    const { image, course_name, available_seats, instructor_name, course_price, enrolled_student, _id } = item;
 
     const { user } = useContext(AuthContext);
     const [, refetch] = useSelects();
@@ -15,8 +15,8 @@ const ClassCard = ({ item }) => {
     const handleSelectClass = id => {
         console.log(id);
         if (user && user.email) {
-            const selectItem = { classItemId: _id, course_name, image, course_price, available_seats, instructors, enrolled_student, email: user.email }
-            fetch('http://localhost:5000/selects', {
+            const selectItem = { classItemId: _id, course_name, image, course_price, available_seats, instructor_name, enrolled_student, email: user.email }
+            fetch('https://speak-hour-server.vercel.app/selects', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -59,7 +59,7 @@ const ClassCard = ({ item }) => {
             <img className="w-48 h-60 rounded" src={image} alt="instructor_image" />
             <div className="card-body">
                 <h2 className="card-title">{course_name}</h2>
-                <p >Instructor: {instructors[0].instructor_name}</p>
+                <p >Instructor: {instructor_name}</p>
                 <p >Available Seats: {available_seats}</p>
                 <p >Enrolled Student: {enrolled_student}</p>
                 <p >Course Price: ${course_price}</p>

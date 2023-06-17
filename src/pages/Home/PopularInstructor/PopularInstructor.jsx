@@ -6,7 +6,8 @@ import useClasses from "../../../hooks/useClasses";
 
 const PopularInstructor = () => {
     const [classes] = useClasses();
-    const popularInstructor = [...classes].sort((a, b) => b.instructors[0].no_of_classes_by_instructor - a.instructors[0].no_of_classes_by_instructor);
+
+    const popularInstructor = [...classes].sort((a, b) => b.no_of_classes_by_instructor - a.no_of_classes_by_instructor);
 
     return (
         <div>
